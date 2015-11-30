@@ -7,17 +7,18 @@
     </h4>
   </td>
   <td><%= post.body %></td>
-  <td><%= link_to 'Show', post %></td>
+  <td><%= link_with_icon 'eye', post %></td>
   <% if user_signed_in? %>
       <% if current_user.author_of?(post) %>
     <td><%= link_with_icon :pencil, edit_post_path(post)%></td>
-    <td><%= link_with_icon 'trash-o', post, method: :delete, data: { confirm: 'Вы уверены?'} %></td>
+    <td><%= link_with_icon 'trash-o', post, method: :delete, data: { confirm: 'Удалить этот пост?' } %></td>
+
     <% end %>
     <td>
       <% if current_user.subscribed_to?(post) %>
-        <%= link_to 'Unsubscribe', current_user.subscription_for(post), method: :delete %>
+        <%= link_with_icon 'fa fa-minus-circle', current_user.subscription_for(post), method: :delete %>
           <% else %>
-    <%= link_to 'Subscribe', post_subscriptions_path(post), method: :post %>
+    <%= link_with_icon 'fa fa-envelope', post_subscriptions_path(post), method: :post %>
     <% end %>
     </td>
   <% end %>
