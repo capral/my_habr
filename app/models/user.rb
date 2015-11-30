@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  has_one :profile
-  has_many :posts
+  has_one :profile, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   has_many :subscriptions
   has_many :subscribed_posts,
@@ -17,10 +17,15 @@ class User < ActiveRecord::Base
   end
 
  def subscribed_to?(post)
-   !!subscriptions.where(post)
+   !!subscription_for(post)
  end
 
   def subscription_for(post)
-    subscriptions.where(post: post).first
+    @subscription ||= subscriptions.where(post: post).first
   end
+
+  def subscribe_to(post)
+    subscribed_posts << post
+  end
+
 end

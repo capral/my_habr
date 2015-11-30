@@ -14,13 +14,27 @@ class Post < ActiveRecord::Base
   scope :reverse_order, -> (order) { order(created_at: :desc) }
   scope :published, -> { where(published: true)}
   scope :unpublished, -> { where(published: false) }
+
+  after_create :subscribe_author
+
   def categories_titles
     # categories.map(&:title).join(',  ')
-    categories.pluck(:title)
+    categories.pluck(:title).join(', ')
   end
 
   def send_notification
     # raise Exception
   end
+
+  protected
+
+  def subscribe_author
+    # user.subscribed_posts << self
+    user.subscribe_to(self)
+  end
+
+  # def subscribe_to(post)
+  #   subscribed_posts << post
+  # end
 
 end

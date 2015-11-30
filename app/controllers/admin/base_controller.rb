@@ -1,4 +1,4 @@
-  class Admin::BaseController < Admin::BaseController
+  class Admin::BaseController < Admin::ApplicationController
 
     before_action :authenticate_user!
     before_action :cheсk_admin

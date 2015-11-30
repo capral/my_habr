@@ -10,12 +10,12 @@
   <td><%= link_to 'Show', post %></td>
   <% if user_signed_in? %>
       <% if current_user.author_of?(post) %>
-    <td><%= link_with_icon :pencil, edit_post_path(post), title:  %></td>
+    <td><%= link_with_icon :pencil, edit_post_path(post)%></td>
     <td><%= link_with_icon 'trash-o', post, method: :delete, data: { confirm: 'Вы уверены?'} %></td>
     <% end %>
     <td>
       <% if current_user.subscribed_to?(post) %>
-        <%= link_to 'Unsubscribe', current_user.subscription_for(post) , method: :delete %>
+        <%= link_to 'Unsubscribe', current_user.subscription_for(post), method: :delete %>
           <% else %>
     <%= link_to 'Subscribe', post_subscriptions_path(post), method: :post %>
     <% end %>
