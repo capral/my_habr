@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'https://mailgun.com/app/domains/appea88e13b43254009b9dff1e69a20b593.mailgun.org'
+  config.mailer_sender = 'mail@appea88e13b43254009b9dff1e69a20b593.mailgun.org'
   # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
